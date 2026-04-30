@@ -25,3 +25,9 @@ variable "state_passphrase" {
   type        = string
   sensitive   = true
 }
+
+variable "primary_domain" {
+  description = "Primary domain (e.g. colewiz.dev)"
+  type        = string
+  default     = "colewiz.dev"
+}
