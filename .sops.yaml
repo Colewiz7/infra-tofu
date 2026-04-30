@@ -1,0 +1,5 @@
+creation_rules:
+  - path_regex: \.encrypted$
+    age: age1pmawytthx2ruq2suts5lczfq2rw4apzf2nn84vkvpchfgzgagqyqnqx055
+  - path_regex: secrets\.ya?ml$
+    age: age1pmawytthx2ruq2suts5lczfq2rw4apzf2nn84vkvpchfgzgagqyqnqx055
