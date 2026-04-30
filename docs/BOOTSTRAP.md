@@ -75,7 +75,7 @@ In summary:
 
 1. Flash Proxmox VE 9.x ISO to USB
 2. Install with two-disk layout (SSD = LVM-thin, HDD = ZFS pool `tank`)
-3. Install NVIDIA 580 legacy driver, `apt-mark hold` the packages
+3. Install current NVIDIA mainline drivers
 4. Create the `tofu@pve` API user, copy the token to `terraform.tfvars`
 5. From the laptop: `tofu apply` to provision VMs and LXCs
 6. SSH into k3s VM, install k3s with Cilium-ready flags
