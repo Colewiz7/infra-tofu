@@ -35,7 +35,6 @@ resource "github_repository" "managed" {
   topics       = each.value.topics
 
   # Sensible defaults
-  has_downloads          = false
   delete_branch_on_merge = true
   allow_squash_merge     = true
   allow_merge_commit     = false
