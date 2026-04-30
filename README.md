@@ -1,4 +1,4 @@
-# colewiz.dev infra-tofu
+# colewiz infra-tofu
 
 OpenTofu IaC for the colewiz.dev homelab platform.
 
