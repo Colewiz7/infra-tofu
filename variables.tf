@@ -19,3 +19,9 @@ variable "github_token" {
   type        = string
   sensitive   = true
 }
+
+variable "state_passphrase" {
+  description = "Passphrase for OpenTofu native state encryption (set via TF_VAR_state_passphrase env)"
+  type        = string
+  sensitive   = true
+}
