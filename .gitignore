@@ -1,0 +1,20 @@
+# OpenTofu / Terraform
+*.tfstate
+*.tfstate.backup
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+crash.log
+crash.*.log
+
+# Plaintext secrets — encrypted versions are fine
+terraform.tfvars
+*.auto.tfvars
+.env
+*.decrypted
+
+# Editor / OS
+.vscode/
+.idea/
+*.swp
+.DS_Store
