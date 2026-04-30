@@ -15,3 +15,4 @@ State stored in Cloudflare R2 with native OpenTofu encryption.
 ## Secrets
 `terraform.tfvars` is encrypted with SOPS+age before commit.
 
+test
