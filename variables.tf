@@ -53,3 +53,14 @@ variable "proxmox_node_name" {
   type        = string
   default     = "colewiz"
 }
+
+variable "ssh_public_key" {
+  description = "SSH public key for cloud-init injection into VMs"
+  type        = string
+}
+
+variable "vm_default_user" {
+  description = "Default user created in cloud-init VMs"
+  type        = string
+  default     = "cole"
+}
