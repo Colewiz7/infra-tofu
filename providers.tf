@@ -10,6 +10,10 @@ terraform {
       source  = "integrations/github"
       version = "~> 6.0"
     }
+    proxmox = {
+      source  = "bpg/proxmox"
+      version = "~> 0.66"
+    }
   }
 
   # Remote state in Cloudflare R2 (S3-compatible)
@@ -18,7 +22,6 @@ terraform {
     key       = "homelab/terraform.tfstate"
     region    = "auto"
     endpoints = { s3 = "https://a3fc8b7925c5c38c05d3dc652d780635.r2.cloudflarestorage.com" }
-
     skip_credentials_validation = true
     skip_metadata_api_check     = true
     skip_region_validation      = true
@@ -32,15 +35,12 @@ terraform {
     key_provider "pbkdf2" "passphrase" {
       passphrase = var.state_passphrase
     }
-
     method "aes_gcm" "encrypted" {
       keys = key_provider.pbkdf2.passphrase
     }
-
     state {
       method = method.aes_gcm.encrypted
     }
-
     plan {
       method = method.aes_gcm.encrypted
     }
@@ -54,4 +54,15 @@ provider "cloudflare" {
 provider "github" {
   token = var.github_token
   owner = "Colewiz7"
+}
+
+provider "proxmox" {
+  endpoint  = var.proxmox_endpoint
+  api_token = "${var.proxmox_api_token_id}=${var.proxmox_api_token}"
+  insecure  = true
+
+  ssh {
+    agent    = true
+    username = "root"
+  }
 }
