@@ -17,3 +17,4 @@ terraform.tfvars
 .idea/
 *.swp
 .DS_Store
+terraform.tfvars

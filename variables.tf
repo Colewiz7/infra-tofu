@@ -31,3 +31,25 @@ variable "primary_domain" {
   type        = string
   default     = "colewiz.dev"
 }
+
+variable "proxmox_endpoint" {
+  description = "Proxmox VE API endpoint"
+  type        = string
+}
+
+variable "proxmox_api_token_id" {
+  description = "Proxmox API token ID (e.g., tofu@pve!homelab)"
+  type        = string
+}
+
+variable "proxmox_api_token" {
+  description = "Proxmox API token secret (UUID)"
+  type        = string
+  sensitive   = true
+}
+
+variable "proxmox_node_name" {
+  description = "Proxmox node hostname"
+  type        = string
+  default     = "colewiz"
+}
