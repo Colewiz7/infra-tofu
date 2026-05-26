@@ -1,91 +1,25 @@
-# k3s-01: single-node k3s cluster host
-# Cloud-init Debian 13, qemu-guest-agent enabled, ssh key injected.
-
-resource "proxmox_virtual_environment_download_file" "debian_13_cloud" {
-  content_type = "import"
-  datastore_id = "tank-iso"
-  node_name    = var.proxmox_node_name
-
-  url       = "https://cloud.debian.org/images/cloud/trixie/latest/debian-13-genericcloud-amd64.qcow2"
-  file_name = "debian-13-genericcloud-amd64.qcow2"
-
-  overwrite           = false
-  overwrite_unmanaged = true
-}
-
-resource "proxmox_virtual_environment_vm" "k3s_01" {
-  name        = "k3s-01"
-  description = "k3s control-plane and worker (single-node cluster)"
-  tags        = ["k8s", "k3s", "managed-by-tofu"]
-  vm_id       = 100
-
-  node_name = var.proxmox_node_name
-
-  agent {
-    enabled = true
-  }
-
-  cpu {
-    cores = 4
-    type  = "host"
-  }
-
-  memory {
-    dedicated = 12288  # 12 GB
-  }
-
-  disk {
-    datastore_id = "tank-vms"
-    file_id      = proxmox_virtual_environment_download_file.debian_13_cloud.id
-    interface    = "scsi0"
-    size         = 60
-    iothread     = true
-    discard      = "on"
-    ssd          = true
-  }
-
-  initialization {
-    datastore_id = "tank-vms"
-
-    ip_config {
-      ipv4 {
-        address = "dhcp"
-      }
-    }
-
-    user_account {
-      username = var.vm_default_user
-      keys     = [trimspace(var.ssh_public_key)]
-    }
-  }
-
-  network_device {
-    bridge = "vmbr1"
-    model  = "virtio"
-  }
-
-  operating_system {
-    type = "l26"
-  }
-
-  serial_device {}
-
-  scsi_hardware = "virtio-scsi-single"
-
-  on_boot = true
-
-  lifecycle {
-    ignore_changes = [
-      initialization[0].user_account[0].password,
-    ]
-  }
-}
-
-output "k3s_01_ipv4" {
-  description = "k3s-01 IPv4 (populated after first boot via qemu-guest-agent)"
-  value       = try(proxmox_virtual_environment_vm.k3s_01.ipv4_addresses[1][0], "pending guest agent")
-}
-
-output "k3s_01_id" {
-  value = proxmox_virtual_environment_vm.k3s_01.id
-}
+# ----------------------------------------------------------------------
+# k3s-01 VM — IMPERATIVE-MANAGED, NOT in tofu state.
+#
+# History:
+#   - Originally provisioned via tofu on the RIT proxmox instance.
+#   - After the RIT decommission (May 2026) the VM was rebuilt manually
+#     on the home proxmox (192.168.0.100) with substantial divergences
+#     from the original source:
+#       * UEFI/ovmf BIOS + q35 machine type (for PCI passthrough)
+#       * NVIDIA GPU passthrough on hostpci0 (0000:09:00, x-vga=1)
+#       * Dual network: net0 vmbr0 (public LAN), net1 vmbr1 (cluster)
+#       * Bumped to 8 cores / 14 GiB max with 12 GiB balloon floor
+#       * 70 GiB scsi0 + 1 MiB efidisk0
+#       * Cloud-init via ide2 + tank-vms storage
+#   - On 2026-05-26 the resource was removed from tofu state because
+#     reconciling source to these post-migration mutations would force
+#     a destructive replace, and the bpg/proxmox provider does not
+#     cleanly express GPU passthrough.
+#
+# If/when this VM is recreated from scratch (DR scenario), see the
+# fresh-cluster bootstrap notes in homelab-finish-setup.md. The actual
+# qm config is the canonical source of truth today:
+#
+#     ssh pve qm config 100
+# ----------------------------------------------------------------------
