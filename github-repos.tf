@@ -40,7 +40,6 @@ resource "github_repository" "managed" {
   allow_merge_commit     = false
   allow_rebase_merge     = true
   allow_auto_merge       = false
-  vulnerability_alerts   = true
 
   # Don't force tofu to recreate the repo on import
   lifecycle {
@@ -51,6 +50,15 @@ resource "github_repository" "managed" {
       template,
     ]
   }
+}
+
+# Dependabot vulnerability alerts (replaces the deprecated inline
+# vulnerability_alerts = true on github_repository).
+resource "github_repository_vulnerability_alerts" "managed" {
+  for_each = local.managed_repos
+
+  repository = github_repository.managed[each.key].name
+  enabled    = true
 }
 
 # Branch protection on main for both repos
