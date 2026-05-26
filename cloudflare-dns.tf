@@ -37,8 +37,24 @@ resource "cloudflare_dns_record" "tunnel" {
   comment = each.value
 }
 
+# Apex record (colewiz.dev itself) routed through the tunnel.
+# Cloudflare flattens CNAMEs at the apex when proxied, so a CNAME here
+# is valid even though apex CNAMEs are forbidden by RFC 1034.
+resource "cloudflare_dns_record" "apex" {
+  zone_id = var.cloudflare_zone_id
+  name    = var.primary_domain
+  type    = "CNAME"
+  content = local.tunnel_target
+  proxied = true
+  ttl     = 1
+  comment = "Apex domain — test website (index-1 at /, index-2 at /alt)"
+}
+
 # Output: easy reference for downstream modules / other tools
 output "tunnel_hostnames" {
   description = "All public hostnames managed by tofu, routed via Cloudflare Tunnel"
-  value       = [for k, _ in local.tunnel_subdomains : "${k}.${var.primary_domain}"]
+  value = concat(
+    [var.primary_domain],
+    [for k, _ in local.tunnel_subdomains : "${k}.${var.primary_domain}"],
+  )
 }
