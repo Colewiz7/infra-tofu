@@ -16,15 +16,22 @@ locals {
   # hostname → backend service URL. Simple cases only — hostnames whose
   # origin needs TLS/header overrides go in tunnel_origin_overrides below.
   tunnel_ingress = {
+    "ai.colewiz.dev"       = "http://open-webui.ai.svc.cluster.local:80"
     "amp.colewiz.dev"      = "http://10.10.10.201:8080"
     "argocd.colewiz.dev"   = "https://argo-cd-argocd-server.argocd.svc.cluster.local:443"
     "auth.colewiz.dev"     = "http://authentik-server.authentik.svc.cluster.local:80"
     "bazarr.colewiz.dev"   = "http://bazarr.media.svc.cluster.local:6767"
+    "beszel.colewiz.dev"   = "http://beszel.beszel.svc.cluster.local:8090"
     "colewiz.dev"          = "http://website.website.svc.cluster.local:80"
     "files.colewiz.dev"    = "http://filebrowser.filebrowser.svc.cluster.local:80"
-    "home.colewiz.dev"     = "http://homarr.homarr.svc.cluster.local:7575"
+    "grafana.colewiz.dev"  = "http://kube-prometheus-stack-grafana.monitoring.svc.cluster.local:80"
+    "home.colewiz.dev"     = "http://homepage.homepage.svc.cluster.local:80"
+    "immich.colewiz.dev"   = "http://immich-server.immich.svc.cluster.local:2283"
+    "kai.colewiz.dev"      = "http://kais-garden-web.kais-garden.svc.cluster.local:80"
+    "kai-api.colewiz.dev"  = "http://kais-garden-api.kais-garden.svc.cluster.local:80"
     "prowlarr.colewiz.dev" = "http://prowlarr.media.svc.cluster.local:9696"
     "radarr.colewiz.dev"   = "http://radarr.media.svc.cluster.local:7878"
+    "recipe.colewiz.dev"   = "http://mealie.mealie.svc.cluster.local:80"
     "request.colewiz.dev"  = "http://jellyseerr.media.svc.cluster.local:5055"
     "sonarr.colewiz.dev"   = "http://sonarr.media.svc.cluster.local:8989"
     "torrent.colewiz.dev"  = "http://qbittorrent.downloads.svc.cluster.local:8080"
