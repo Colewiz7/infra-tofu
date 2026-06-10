@@ -29,6 +29,7 @@ locals {
     "immich.colewiz.dev"   = "http://immich-server.immich.svc.cluster.local:2283"
     "kai.colewiz.dev"      = "http://kais-garden-web.kais-garden.svc.cluster.local:80"
     "kai-api.colewiz.dev"  = "http://kais-garden-api.kais-garden.svc.cluster.local:80"
+    "ntfy.colewiz.dev"     = "http://ntfy.ntfy.svc.cluster.local:80"
     "prowlarr.colewiz.dev" = "http://prowlarr.media.svc.cluster.local:9696"
     "radarr.colewiz.dev"   = "http://radarr.media.svc.cluster.local:7878"
     "recipe.colewiz.dev"   = "http://mealie.mealie.svc.cluster.local:80"
