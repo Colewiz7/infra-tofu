@@ -25,7 +25,6 @@ locals {
     bazarr    = "Bazarr subtitles"
     beszel    = "Beszel fleet monitoring"
     comfyui   = "ComfyUI image generation (planned)"
-    files     = "Filebrowser Quantum"
     glance    = "Glance dashboard (planned)"
     grafana   = "Grafana dashboards"
     home      = "Homepage dashboard"
