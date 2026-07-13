@@ -20,6 +20,7 @@ locals {
     "amp.colewiz.dev"      = "http://10.10.10.201:8080"
     "argocd.colewiz.dev"   = "https://argo-cd-argocd-server.argocd.svc.cluster.local:443"
     "auth.colewiz.dev"     = "http://authentik-server.authentik.svc.cluster.local:80"
+    "cloud.colewiz.dev"    = "http://nextcloud.nextcloud.svc.cluster.local:80"
     "bazarr.colewiz.dev"   = "http://bazarr.media.svc.cluster.local:6767"
     "beszel.colewiz.dev"   = "http://beszel.beszel.svc.cluster.local:8090"
     "colewiz.dev"          = "http://website.website.svc.cluster.local:80"
