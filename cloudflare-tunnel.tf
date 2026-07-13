@@ -24,7 +24,6 @@ locals {
     "bazarr.colewiz.dev"   = "http://bazarr.media.svc.cluster.local:6767"
     "beszel.colewiz.dev"   = "http://beszel.beszel.svc.cluster.local:8090"
     "colewiz.dev"          = "http://website.website.svc.cluster.local:80"
-    "files.colewiz.dev"    = "http://filebrowser.filebrowser.svc.cluster.local:80"
     "grafana.colewiz.dev"  = "http://kube-prometheus-stack-grafana.monitoring.svc.cluster.local:80"
     "home.colewiz.dev"     = "http://homepage.homepage.svc.cluster.local:80"
     "immich.colewiz.dev"   = "http://immich-server.immich.svc.cluster.local:2283"
