@@ -21,6 +21,7 @@ locals {
     amp       = "AMP game server manager"
     argocd    = "Argo CD UI"
     auth      = "Authentik SSO"
+    closet    = "Wardrobe try-on for Kai"
     cloud     = "Nextcloud"
     bazarr    = "Bazarr subtitles"
     beszel    = "Beszel fleet monitoring"
