@@ -51,6 +51,8 @@ locals {
     mc       = "Minecraft server"
     vs       = "Vintage Story server"
   }
+  # Seed value only. cf-ddns.sh rewrites these records in place, so this
+  # goes stale by design and should not be chased.
   home_public_ip = "74.77.244.136"
 }
 
@@ -92,6 +94,15 @@ resource "cloudflare_dns_record" "home_a" {
   proxied = false
   ttl     = 300
   comment = each.value
+
+  # cf-ddns.sh on the Proxmox host owns the address here, not tofu. It rewrites
+  # these whenever the public address changes, which happens on every move
+  # between home and RIT and on every residential lease change. Tofu only seeds
+  # the records. Without this an apply quietly reverts jellyfin to a stale
+  # address and takes direct streaming down until cf-ddns next notices.
+  lifecycle {
+    ignore_changes = [content]
+  }
 }
 
 # Outputs: easy reference for downstream modules / docs
