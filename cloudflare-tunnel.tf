@@ -25,13 +25,11 @@ locals {
     "bazarr.colewiz.dev"   = "http://bazarr.media.svc.cluster.local:6767"
     "beszel.colewiz.dev"   = "http://beszel.beszel.svc.cluster.local:8090"
     "colewiz.dev"          = "http://website.website.svc.cluster.local:80"
-    # This route is direct rather than through Authentik, so the app does its
-    # own auth: everything except the health/metrics endpoints and the camera
-    # ingest (which uses its own key) sits behind HTTP basic, with the password
-    # in the dishwatcher-secrets k8s secret. The dashboard shows blame clips,
-    # which are video of people inside the flat, so do not remove that without
-    # putting Authentik in front instead.
-    "sink.colewiz.dev"     = "http://dishwatcher.dishwatcher.svc.cluster.local:80"
+    # Proxied by the Authentik outpost, same as closet.colewiz.dev: the
+    # provider's internal_host points at the dishwatcher service. The app also
+    # trusts X-authentik-username so SSO does not prompt twice, and keeps basic
+    # auth for the tailnet NodePort, which Authentik does not front.
+    "sink.colewiz.dev"     = "http://authentik-server.authentik.svc.cluster.local:80"
     "grafana.colewiz.dev"  = "http://kube-prometheus-stack-grafana.monitoring.svc.cluster.local:80"
     "home.colewiz.dev"     = "http://homepage.homepage.svc.cluster.local:80"
     "immich.colewiz.dev"   = "http://immich-server.immich.svc.cluster.local:2283"
