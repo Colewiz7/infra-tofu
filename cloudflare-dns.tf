@@ -23,6 +23,7 @@ locals {
     auth      = "Authentik SSO"
     closet    = "Wardrobe try-on for Kai"
     cloud     = "Nextcloud"
+    dishes    = "Dishwatcher kitchen sink monitor"
     bazarr    = "Bazarr subtitles"
     beszel    = "Beszel fleet monitoring"
     comfyui   = "ComfyUI image generation (planned)"
