@@ -13,7 +13,10 @@ locals {
     }
     "homelab-gitops" = {
       description     = "GitOps source of truth for colewiz.dev k3s cluster"
-      visibility      = "public"
+      # Private, and it must stay that way: this repo carries the cluster
+      # layout and storage config. The declaration used to say public while the
+      # real repo was private, so any apply would have flipped it open.
+      visibility      = "private"
       has_issues      = true
       has_wiki        = false
       has_projects    = false
