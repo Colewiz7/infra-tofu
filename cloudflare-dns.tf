@@ -36,6 +36,7 @@ locals {
     lore      = "BookStack — analog horror lore (planned)"
     ntfy      = "ntfy push notifications (alerts)"
     prowlarr  = "Prowlarr indexer manager"
+    quiz      = "QuizWiz study app"
     radarr    = "Radarr movie manager"
     recipe    = "Mealie recipes"
     request   = "Jellyseerr media requests"
