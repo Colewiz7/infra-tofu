@@ -37,6 +37,7 @@ locals {
     "kai-api.colewiz.dev"  = "http://kais-garden-api.kais-garden.svc.cluster.local:80"
     "ntfy.colewiz.dev"     = "http://ntfy.ntfy.svc.cluster.local:80"
     "prowlarr.colewiz.dev" = "http://prowlarr.media.svc.cluster.local:9696"
+    "quiz.colewiz.dev"     = "http://quizwiz.quizwiz.svc.cluster.local:80"
     "radarr.colewiz.dev"   = "http://radarr.media.svc.cluster.local:7878"
     "recipe.colewiz.dev"   = "http://mealie.mealie.svc.cluster.local:80"
     "request.colewiz.dev"  = "http://jellyseerr.media.svc.cluster.local:5055"
