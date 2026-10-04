@@ -16,26 +16,30 @@ locals {
   # hostname → backend service URL. Simple cases only — hostnames whose
   # origin needs TLS/header overrides go in tunnel_origin_overrides below.
   tunnel_ingress = {
-    "ai.colewiz.dev"       = "http://open-webui.ai.svc.cluster.local:80"
-    "amp.colewiz.dev"      = "http://10.10.10.201:8080"
-    "argocd.colewiz.dev"   = "https://argo-cd-argocd-server.argocd.svc.cluster.local:443"
-    "auth.colewiz.dev"     = "http://authentik-server.authentik.svc.cluster.local:80"
-    "closet.colewiz.dev"   = "http://authentik-server.authentik.svc.cluster.local:80"
-    "cloud.colewiz.dev"    = "http://nextcloud.nextcloud.svc.cluster.local:80"
-    "bazarr.colewiz.dev"   = "http://bazarr.media.svc.cluster.local:6767"
-    "beszel.colewiz.dev"   = "http://beszel.beszel.svc.cluster.local:8090"
-    "colewiz.dev"          = "http://website.website.svc.cluster.local:80"
+    "ai.colewiz.dev"     = "http://open-webui.ai.svc.cluster.local:80"
+    "amp.colewiz.dev"    = "http://10.10.10.201:8080"
+    "argocd.colewiz.dev" = "https://argo-cd-argocd-server.argocd.svc.cluster.local:443"
+    "auth.colewiz.dev"   = "http://authentik-server.authentik.svc.cluster.local:80"
+    "closet.colewiz.dev" = "http://authentik-server.authentik.svc.cluster.local:80"
+    "cloud.colewiz.dev"  = "http://nextcloud.nextcloud.svc.cluster.local:80"
+    "bazarr.colewiz.dev" = "http://bazarr.media.svc.cluster.local:6767"
+    "beszel.colewiz.dev" = "http://beszel.beszel.svc.cluster.local:8090"
+    "bridge.colewiz.dev" = "http://biscuit-bridge.biscuit-bridge.svc.cluster.local:8000"
+    "colewiz.dev"        = "http://website.website.svc.cluster.local:80"
     # Proxied by the Authentik outpost, same as closet.colewiz.dev: the
     # provider's internal_host points at the dishwatcher service. The app also
     # trusts X-authentik-username so SSO does not prompt twice, and keeps basic
     # auth for the tailnet NodePort, which Authentik does not front.
-    "sink.colewiz.dev"     = "http://authentik-server.authentik.svc.cluster.local:80"
-    "grafana.colewiz.dev"  = "http://kube-prometheus-stack-grafana.monitoring.svc.cluster.local:80"
-    "home.colewiz.dev"     = "http://homepage.homepage.svc.cluster.local:80"
-    "immich.colewiz.dev"   = "http://immich-server.immich.svc.cluster.local:2283"
-    "kai.colewiz.dev"      = "http://kais-garden-web.kais-garden.svc.cluster.local:80"
-    "kai-api.colewiz.dev"  = "http://kais-garden-api.kais-garden.svc.cluster.local:80"
-    "ntfy.colewiz.dev"     = "http://ntfy.ntfy.svc.cluster.local:80"
+    "sink.colewiz.dev"    = "http://authentik-server.authentik.svc.cluster.local:80"
+    "grafana.colewiz.dev" = "http://kube-prometheus-stack-grafana.monitoring.svc.cluster.local:80"
+    "home.colewiz.dev"    = "http://homepage.homepage.svc.cluster.local:80"
+    "immich.colewiz.dev"  = "http://immich-server.immich.svc.cluster.local:2283"
+    "kai.colewiz.dev"     = "http://kais-garden-web.kais-garden.svc.cluster.local:80"
+    "kai-api.colewiz.dev" = "http://kais-garden-api.kais-garden.svc.cluster.local:80"
+    "ntfy.colewiz.dev"    = "http://ntfy.ntfy.svc.cluster.local:80"
+    # Present in the live tunnel config but missing from this source; added to
+    # match live so applies stop removing it. Its DNS record is unmanaged.
+    "jobs.colewiz.dev"     = "http://authentik-server.authentik.svc.cluster.local:80"
     "prowlarr.colewiz.dev" = "http://prowlarr.media.svc.cluster.local:9696"
     "quiz.colewiz.dev"     = "http://quizwiz.quizwiz.svc.cluster.local:80"
     "radarr.colewiz.dev"   = "http://radarr.media.svc.cluster.local:7878"

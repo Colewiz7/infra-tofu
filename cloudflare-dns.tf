@@ -26,6 +26,7 @@ locals {
     sink      = "Dishwatcher kitchen sink monitor"
     bazarr    = "Bazarr subtitles"
     beszel    = "Beszel fleet monitoring"
+    bridge    = "Biscuit Bridge MCP"
     comfyui   = "ComfyUI image generation (planned)"
     glance    = "Glance dashboard (planned)"
     grafana   = "Grafana dashboards"
