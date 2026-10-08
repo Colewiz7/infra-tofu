@@ -64,9 +64,9 @@ resource "github_repository_vulnerability_alerts" "managed" {
   enabled    = true
 }
 
-# Branch protection on main for both repos
+# Branch protection on main for infra-tofu (already live and in state)
 resource "github_branch_protection" "main" {
-  for_each = local.managed_repos
+  for_each = { for k, v in local.managed_repos : k => v if k == "infra-tofu" }
 
   repository_id = github_repository.managed[each.key].node_id
   pattern       = "main"
