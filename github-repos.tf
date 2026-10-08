@@ -4,23 +4,23 @@
 locals {
   managed_repos = {
     "infra-tofu" = {
-      description     = "OpenTofu IaC for colewiz.dev (Cloudflare, Proxmox, GitHub)"
-      visibility      = "public"
-      has_issues      = true
-      has_wiki        = false
-      has_projects    = false
-      topics          = ["opentofu", "iac", "homelab", "cloudflare", "devops"]
+      description  = "OpenTofu IaC for colewiz.dev (Cloudflare, Proxmox, GitHub)"
+      visibility   = "public"
+      has_issues   = true
+      has_wiki     = false
+      has_projects = false
+      topics       = ["opentofu", "iac", "homelab", "cloudflare", "devops"]
     }
     "homelab-gitops" = {
-      description     = "GitOps source of truth for colewiz.dev k3s cluster"
+      description = "GitOps source of truth for colewiz.dev k3s cluster"
       # Private, and it must stay that way: this repo carries the cluster
       # layout and storage config. The declaration used to say public while the
       # real repo was private, so any apply would have flipped it open.
-      visibility      = "private"
-      has_issues      = true
-      has_wiki        = false
-      has_projects    = false
-      topics          = ["kubernetes", "k3s", "argocd", "gitops", "homelab"]
+      visibility   = "private"
+      has_issues   = true
+      has_wiki     = false
+      has_projects = false
+      topics       = ["kubernetes", "k3s", "argocd", "gitops", "homelab"]
     }
   }
 }
@@ -72,18 +72,18 @@ resource "github_branch_protection" "main" {
   pattern       = "main"
 
   required_pull_request_reviews {
-    required_approving_review_count = 0  # Solo project; bump to 1 if you add collaborators
-    dismiss_stale_reviews            = true
-    require_code_owner_reviews       = false
+    required_approving_review_count = 0 # Solo project; bump to 1 if you add collaborators
+    dismiss_stale_reviews           = true
+    require_code_owner_reviews      = false
   }
 
   required_status_checks {
     strict   = true
-    contexts = []  # Will populate when CI lands
+    contexts = [] # Will populate when CI lands
   }
 
-  enforce_admins                  = false  # You can bypass; flip to true once stable
-  require_signed_commits          = false  # Flip to true after setting up commit signing
+  enforce_admins                  = false # You can bypass; flip to true once stable
+  require_signed_commits          = false # Flip to true after setting up commit signing
   require_conversation_resolution = true
   allows_force_pushes             = false
   allows_deletions                = false
