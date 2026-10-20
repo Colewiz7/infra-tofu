@@ -18,8 +18,9 @@ The public hostnames all share one pattern: DNS points at the tunnel, the tunnel
 
 ## State and secrets
 
-- **State** lives in a Cloudflare R2 bucket through the S3 backend, and is encrypted client-side with OpenTofu's native AES-GCM encryption. The passphrase comes from `TF_VAR_state_passphrase`, so neither the state nor a plan is readable without it.
-- **Variables** such as API tokens live in `terraform.tfvars.encrypted`, encrypted with SOPS and age before they are committed. Nothing sensitive is in plain text in the repo.
+State lives in a Cloudflare R2 bucket through the S3 backend and is encrypted client-side with OpenTofu's native AES-GCM encryption. The passphrase comes from `TF_VAR_state_passphrase`, so neither the state nor a plan is readable without it.
+
+Variables such as API tokens live in `terraform.tfvars.encrypted`, which is encrypted with SOPS and age before it is committed.
 
 ## Run it
 
