@@ -33,9 +33,3 @@ tofu apply
 ```
 
 `terraform.tfvars` is gitignored. Providers are `cloudflare` 5.x, `integrations/github` 6.x and `bpg/proxmox`, on OpenTofu 1.9 or newer.
-
-## Docs
-
-- [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) the layers of the platform, from hardware to workloads.
-- [`docs/BOOTSTRAP.md`](docs/BOOTSTRAP.md) bringing everything up again from a fresh laptop.
-- [`docs/adr/`](docs/adr/) seven architecture decision records, each with the tradeoff and what would make me change my mind. Examples: Argo CD over Flux, Cilium replacing kube-proxy, OpenTofu over Terraform, and no service mesh on a single node.
