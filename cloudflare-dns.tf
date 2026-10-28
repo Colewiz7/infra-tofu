@@ -35,6 +35,7 @@ locals {
     kai       = "Kai's Garden web"
     "kai-api" = "Kai's Garden sync API"
     lore      = "BookStack — analog horror lore (planned)"
+    mcp       = "JobSeer MCP bridge"
     ntfy      = "ntfy push notifications (alerts)"
     prowlarr  = "Prowlarr indexer manager"
     quiz      = "QuizWiz study app"

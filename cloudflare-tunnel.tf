@@ -25,6 +25,7 @@ locals {
     "bazarr.colewiz.dev" = "http://bazarr.media.svc.cluster.local:6767"
     "beszel.colewiz.dev" = "http://beszel.beszel.svc.cluster.local:8090"
     "bridge.colewiz.dev" = "http://biscuit-bridge.biscuit-bridge.svc.cluster.local:8000"
+    "mcp.colewiz.dev"    = "http://jobseer-mcp.jobseer-mcp.svc.cluster.local:8000"
     "colewiz.dev"        = "http://website.website.svc.cluster.local:80"
     # Proxied by the Authentik outpost, same as closet.colewiz.dev: the
     # provider's internal_host points at the dishwatcher service. The app also
